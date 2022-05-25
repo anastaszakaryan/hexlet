@@ -1,0 +1,16 @@
+from functions import get_function
+
+get = get_function()
+
+# BEGIN (write your solution here)
+if get({"ключ": "значение"}, "ключ") != "значение":
+    raise Exception('Ошибка!')
+
+if get({"ключ": "значение"}, "не ключ", "дефолтное") != "дефолтное":
+    raise Exception('Ошибка!')
+
+if get({"ключ": "значение"}, "ключ", "дефолтное") != "значение":
+    raise Exception('Ошибка!')
+
+print('Все тесты пройдены!')
+# END
