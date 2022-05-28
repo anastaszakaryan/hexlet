@@ -1,0 +1,37 @@
+import pytest
+import copy
+
+from functions import get_function
+
+set_ = get_function()
+
+
+# BEGIN (write your solution here)
+@pytest.fixture
+def coll():
+    return {"a": {"b": {"c": 3}}}
+
+
+def test_has_value(coll):
+    coll_copy = copy.deepcopy(coll)
+    set_(coll_copy, ["a", "b", "c"], 4)
+    assert coll_copy["a"]["b"]["c"] == 4
+
+
+def test_has_part_value(coll):
+    coll_copy = copy.deepcopy(coll)
+    set_(coll_copy, ["a", "b", "x"], 6)
+    assert coll_copy["a"]["b"]["x"] == 6
+
+
+def test_doesn_have_value(coll):
+    coll_copy = copy.deepcopy(coll)
+    set_(coll_copy, ['x', 'y', 'z'], 5)
+    assert coll_copy['x']['y']['z'] == 5
+
+
+def test_structure(coll):
+    coll_copy = copy.deepcopy(coll)
+    set_(coll_copy, ["a", "b", "x"], 6)
+    assert coll_copy == {"a": {"b": {"c": 3, "x": 6}}}
+# END
