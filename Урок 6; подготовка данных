@@ -24,7 +24,7 @@ def test_has_part_value(coll):
     assert coll_copy["a"]["b"]["x"] == 6
 
 
-def test_doesn_have_value(coll):
+def test_doesnt_have_value(coll):
     coll_copy = copy.deepcopy(coll)
     set_(coll_copy, ['x', 'y', 'z'], 5)
     assert coll_copy['x']['y']['z'] == 5
